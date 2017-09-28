@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <h1>Recipe Maker</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <h3>Recipes:</h3>
+      <% if @recipes.any?() %>
+        <ul>
+          <% @recipes.each do |recipe| %>
+            <li><a href="/ingredients/<%= recipe.id %>"><%= recipe.title %></a><a href='/edit_recipe/<%= recipe.id %>'> .Edit</a></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="card">
+      <h3>Add New Recipe</h3>
+      <form action="/" method="post">
+        <div class="form-group">
+          <label for="title"></label>
+          <input class="form-control" type="text" name="title" placeholder="e.g. Dawson's Famous Curry" autofocus required>
+        </div>
+        <button type="submit" class="btn btn-success">Create</button>
+      </form>
+    </div>
+  </div>
+</div>

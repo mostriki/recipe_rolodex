@@ -1,0 +1,29 @@
+<h1> Add Ingredients for: <%= @recipe.title %></h1>
+
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <h3>Ingredients:</h3>
+      <% if @recipe.ingredients.any?() %>
+        <ul>
+          <% @recipe.ingredients.each do |ingredient| %>
+            <li><%= ingredient.name %><a href='/edit_recipe/<%= ingredient.id %>'> .Edit</a></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="card">
+      <h3>Add New Ingredient</h3>
+      <form action="/ingredients/<%= @recipe.id%>" method="post">
+        <div class="form-group">
+          <label for="name"></label>
+          <input class="form-control" type="text" name="name" placeholder="e.g. Tomatoes, Carrots, Salt, etc " autofocus required>
+        </div>
+        <button type="submit" class="btn btn-success">Add Ingredient</button>
+      </form>
+    </div>
+  </div>
+</div>
