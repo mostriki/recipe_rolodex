@@ -1,0 +1,69 @@
+<div class="jumbotron">
+  <h1><%= @recipe.title %></h1>
+</div>
+
+<h1> Add Ingredients for: <%= @recipe.title %></h1>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <h3>Ingredients:</h3>
+      <% if @recipe.ingredients.any?() %>
+        <ul>
+          <% @recipe.ingredients.each do |ingredient| %>
+            <li><%= ingredient.name %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="card">
+      <h3>Add Instructions</h3>
+      <form action="/instructions/<%= @recipe.id%>" method="post">
+        <div class="form-group">
+          <label for="step"></label>
+          <input class="form-control" type="text" name="step" autofocus required>
+        </div>
+        <button type="submit" class="btn btn-success">Add Steps</button>
+      </form>
+      <h3>Instructions:</h3>
+      <% if @recipe.instructions.any?() %>
+        <ol>
+          <% @recipe.instructions.each do |instruction| %>
+            <li><%= instruction.step %></li>
+          <% end %>
+        </ol>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <h3>Add A New Tag</h3>
+      <form action="/instructions/tag/<%= @recipe.id%>" method="post">
+        <div class="form-group">
+          <label for="tag"></label>
+          <input class="form-control" type="text" name="tag" autofocus required>
+        </div>
+        <button type="submit" class="btn btn-success">Add Tag</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <h3>Tags:</h3>
+      <% if @recipe.categories.any?() %>
+        <ul>
+          <% @recipe.categories.each do |category| %>
+            <li><%= category.tag %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<h4><a href="/recipe_page/<%= @recipe.id %>">Final Recipe</a><h4>

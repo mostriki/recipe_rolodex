@@ -33,3 +33,38 @@ post('/ingredients/:id') do
   @recipe.ingredients.push(ingredient)
   erb(:ingredients)
 end
+
+get('/instructions/:id') do
+  @recipe = Recipe.find(params['id'])
+  erb(:instructions)
+end
+
+post('/instructions/:id') do
+  @recipe = Recipe.find(params['id'])
+  step = params['step']
+  steps = Instruction.create({step: step})
+  @recipe.instructions.push(steps)
+  erb(:instructions)
+end
+
+post('/instructions/tag/:id') do
+  @recipe = Recipe.find(params['id'])
+  tag = params['tag']
+  tag = Category.create({tag: tag})
+  @recipe.categories.push(tag)
+  erb(:instructions)
+end
+
+get('/recipe_page/:id') do
+  @recipe = Recipe.find(params['id'])
+  erb(:recipe_page)
+end
+
+patch('/recipe_page/:id') do
+  @recipe = Recipe.find(params['id'])
+  rating_input = params['rating']
+  @rating = Recipe.update({rating: rating_input})
+  @recipe = @recipe.rating
+  @recipe = Recipe.find(params['id'])
+  erb(:recipe_page)
+end

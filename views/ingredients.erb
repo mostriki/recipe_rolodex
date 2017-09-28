@@ -1,3 +1,8 @@
+<div class="jumbotron">
+  <h1><%= @recipe.title %></h1>
+</div>
+
+
 <h1> Add Ingredients for: <%= @recipe.title %></h1>
 
 
@@ -27,3 +32,5 @@
     </div>
   </div>
 </div>
+
+<a href="/instructions/<%= @recipe.id %>">Add Instructions</a>
